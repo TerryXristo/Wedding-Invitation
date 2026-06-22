@@ -1,3 +1,4 @@
+:::writing{variant="document" id="58263"}
 const chatterbox = document.getElementById("chatterbox");
 const invitation = document.getElementById("invitation");
 const instruction = document.getElementById("instruction");
@@ -14,65 +15,52 @@ Stages
 */
 
 function openNextStage() {
-stage++;
+    stage++;
 
-```
-if (stage === 1) {
-    chatterbox.classList.add("stage1");
+    if (stage === 1) {
+        chatterbox.classList.add("stage1");
+        instruction.textContent = "Click again";
+    }
 
-    instruction.textContent = "Click again";
-}
+    if (stage === 2) {
+        chatterbox.classList.add("stage2");
+        instruction.style.opacity = "0";
 
-if (stage === 2) {
-    chatterbox.classList.add("stage2");
-
-    instruction.style.opacity = "0";
-
-    setTimeout(() => {
-        invitation.classList.add("show");
-    }, 800);
-}
-```
-
+        setTimeout(() => {
+            invitation.classList.add("show");
+        }, 800);
+    }
 }
 
 function startAutoOpen() {
-autoTimer = setTimeout(() => {
-if (stage === 0) {
-openNextStage();
-
-```
-        setTimeout(() => {
+    autoTimer = setTimeout(() => {
+        if (stage === 0) {
             openNextStage();
-        }, 1800);
-    }
-}, 10000);
-```
 
+            setTimeout(() => {
+                openNextStage();
+            }, 1800);
+        }
+    }, 10000);
 }
 
 chatterbox.addEventListener("click", () => {
-clearTimeout(autoTimer);
+    clearTimeout(autoTimer);
 
-```
-if (stage < 2) {
-    openNextStage();
-}
-```
-
-});
-
-document.addEventListener("keydown", (e) => {
-if (e.code === "Space") {
-e.preventDefault();
-
-```
     if (stage < 2) {
         openNextStage();
     }
-}
-```
+});
 
+document.addEventListener("keydown", (e) => {
+    if (e.code === "Space") {
+        e.preventDefault();
+
+        if (stage < 2) {
+            openNextStage();
+        }
+    }
 });
 
 startAutoOpen();
+:::

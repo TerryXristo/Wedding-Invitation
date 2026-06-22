@@ -1,4 +1,3 @@
-:::writing{variant="document" id="58263"}
 const chatterbox = document.getElementById("chatterbox");
 const invitation = document.getElementById("invitation");
 const instruction = document.getElementById("instruction");
@@ -63,4 +62,3 @@ document.addEventListener("keydown", (e) => {
 });
 
 startAutoOpen();
-:::
